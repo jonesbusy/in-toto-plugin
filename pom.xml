@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.19</version>
+    <version>4.87</version>
     <relativePath />
   </parent>
   
@@ -15,15 +15,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jenkins.version>2.346.1</jenkins.version>
-    <bom>2.346.x</bom>
-    <bom.version>28</bom.version>
-    <java.level>8</java.level>
-    <java.version>11</java.version>
-    <maven.compiler.release>${java.level}</maven.compiler.release>
-    <maven.compiler.source>${java.level}</maven.compiler.source>
-    <maven.compiler.target>${java.level}</maven.compiler.target>
-    <jenkins-test-harness.version>2.72</jenkins-test-harness.version>
+    <jenkins.version>2.440.3</jenkins.version>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.failOnError>true</spotbugs.failOnError>
     <enforcer.skip>true</enforcer.skip>
@@ -65,6 +57,18 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom-2.440.x</artifactId>
+        <version>3307.v2769886db_63b_</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <!-- in-toto: library to generate link metadata -->
     <dependency>
@@ -78,11 +82,10 @@
       <artifactId>google-http-client</artifactId>
       <version>1.42.0</version>
     </dependency>
+
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.9.0</version>
-      <scope>compile</scope>
+        <groupId>io.jenkins.plugins</groupId>
+        <artifactId>gson-api</artifactId>
     </dependency>
 
     <!--
@@ -97,7 +100,7 @@
     <dependency>
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
-      <version>4.2.3</version>
+      <version>5.1.5</version>
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
@@ -105,23 +108,10 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>1129.vef26f5df883c</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>plain-credentials</artifactId>
-      <version>1.8</version>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.jenkins-ci.tools</groupId>
-        <artifactId>maven-hpi-plugin</artifactId>
-        <configuration>
-          <disabledTestInjection>true</disabledTestInjection>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
